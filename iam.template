@@ -1,0 +1,38 @@
+{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+    "Description" : "AWS proposol",
+    "Parameters" : {
+		"Project" : {
+			"Type" : "String",
+			"Description" : "Project name"
+		},
+		"TargetStage": {
+			"Type" : "String",
+			"Description" : "Target Stage",
+            "AllowedValues" : ["dev","test","qa","prod"]
+        }
+	},
+    "Resources" : {
+
+        "AppInstanceProfile" : {
+            "Type" : "AWS::IAM::InstanceProfile",
+            "Properties" : {
+                "Path" : "/managed/",
+				"InstanceProfileName" : {"Fn::Sub" : "${Project}-${TargetStage}-AppInstanceProfile" },
+                "Roles" : [{ "Ref" : "AppInstanceProfileRole" }]
+            }
+        },
+
+        "AppInstanceProfileRole" : {
+            "Type" : "AWS::IAM::Role",
+            "Properties" : {
+                "AssumeRolePolicyDocument" : { "Version": "2008-10-17", "Statement": [ { "Effect": "Allow", "Principal": { "Service": [ "ec2.amazonaws.com" ] }, "Action": "sts:AssumeRole" } ] },
+                "Path" : "/managed/",
+                "RoleName" : {"Fn::Sub" : "${Project}-${TargetStage}-AppInstanceProfileRole" },
+                "ManagedPolicyArns" : [
+                    { "Fn::Sub" : "arn:${AWS::Partition}:iam::aws:policy/AmazonEC2FullAccess" }
+                ]
+            }
+        }
+	}
+}

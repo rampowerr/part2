@@ -1,0 +1,18 @@
+{
+    "Parameters": {
+        "Project" :  "app",
+        "TargetStage" : "dev",
+        "InstanceType" : "t2.micro",
+        "TargetAppSubnetA" : "subnet-0bc87e63",
+        "TargetVpcId" : "vpc-96d461fe",
+        "ImageId" : "ami-0cd3dfa4e37921605",
+        "CommonNetworkStackName" : "app-network",
+        "Key" : "ramanator",
+        "TargetAvailabilityZone" : "us-east-2a",
+        "TargetSubnet" : "subnet-0bc87e63",
+        "LogGroupRetention" : "14"
+    },
+    "Tags": {
+        "Project": "app"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "Parameters": {
+        "Project" :  "app",
+        "TargetStage" : "dev",
+        "TargetVpcId" : "vpc-226da358"
+    },
+    "Tags": {
+        "Project": "app"
+    }
+}
